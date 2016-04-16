@@ -1,4 +1,4 @@
-# Write far better Redux code far faster
+# Write better Redux code faster
 
 A collection of generic functions for writing redux reducers to operate on various data structures. The hope is you can configure your reducers rather than writing them. It has no external dependencies.
 
