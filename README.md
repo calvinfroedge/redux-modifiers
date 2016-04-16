@@ -2,7 +2,7 @@
 
 A collection of generic functions for operating on various data structures in your Redux state tree. The hope is you can avoid writing code for reducers except in very special cases. It has no external dependencies.
 
-When writing your reducers, you simply use API functions as follows (super simple example, working with an array), instead of writing a reducer function:
+When writing your reducers, you simply use API functions as follows (super simple example, working with an array), instead of writing every method in the reducer from scratch:
 
 ```
 const reducer = handleActions({
