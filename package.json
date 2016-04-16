@@ -45,9 +45,7 @@
     "jsdom": "^8.1.0",
     "mocha": "^2.4.5",
     "mocha-jsdom": "^1.1.0",
-    "react": "^0.14.7",
-    "react-addons-test-utils": "^15.0.1",
-    "react-dom": "^0.14.7",
+    "redux": "^3.4.0",
     "redux-actions": "^0.9.1",
     "rimraf": "^2.5.2",
     "webpack": "^1.12.14"
