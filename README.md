@@ -1,6 +1,6 @@
 # Write better Redux code faster
 
-A collection of generic functions for writing redux reducers to operate on various data structures. The hope is you can configure your reducers rather than writing them. It has no external dependencies.
+A collection of generic functions for operating on various data structures in your Redux state tree. The hope is you can avoid writing code for reducers except in very special cases. It has no external dependencies.
 
 When writing your reducers, you simply use API functions as follows (super simple example, working with an array), instead of writing a reducer function:
 
