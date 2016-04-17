@@ -41,7 +41,7 @@ dispatch(removeItemWhere({foo: 'bar'}));
 
 ```
 {
-  action: YOUR_ACTION_TYPE,
+  type: YOUR_ACTION_TYPE,
   payload: YOUR_PAYLOAD
 }
 ```
