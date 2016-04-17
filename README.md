@@ -1,5 +1,7 @@
 # Write better Redux code faster
 
+![Codeship build status](https://codeship.com/projects/857492d0-ec53-0132-251c-1a6982ed746d/status?branch=master)
+
 A collection of generic functions for operating on various data structures in your Redux state tree. The hope is you can avoid writing code for reducers except in very special cases. It has no external dependencies.
 
 When writing your reducers, you simply use API functions as follows (super simple example, working with an array), instead of writing every method in the reducer from scratch:
