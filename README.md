@@ -4,7 +4,7 @@ A collection of generic functions for operating on various data structures in yo
 
 When writing your reducers, you simply use API functions as follows (super simple example, working with an array), instead of writing every method in the reducer from scratch:
 
-```
+```js
 const reducer = handleActions({
   'ADD': array.add,
   'REMOVE': array.removeAtIndex,
@@ -15,13 +15,13 @@ const reducer = handleActions({
 
 You can even target specific parts of state:
 
-```
+```js
 'UPDATE_FOO': target('key', 'subkey', object.update)
 ```
 
 You would then dispatch actions that look like this:
 
-```
+```js
 import { createAction } from 'redux-actions'
 
 let addItem = createAction('ADD');
@@ -39,7 +39,7 @@ dispatch(removeItemWhere({foo: 'bar'}));
 
 `redux-modifiers` does expect that actions are dispatched as [Flux Standard Actions](https://github.com/acdlite/flux-standard-action). Essentially, this means every action looks like:
 
-```
+```js
 {
   action: YOUR_ACTION_TYPE,
   payload: YOUR_PAYLOAD
@@ -50,7 +50,7 @@ dispatch(removeItemWhere({foo: 'bar'}));
 
 Sometimes, you want to work on only a very specific part of state. For instance, you may want to push a new item to an array inside of an object:
 
-```
+```js
 {
   foo: [
     {
@@ -63,25 +63,25 @@ Sometimes, you want to work on only a very specific part of state. For instance,
 
 How do you do this? Easy. Your reducer should look something this:
 
-```
+```js
 'ADD_FOO_ITEM': target('foo', array.add);
 ```
 
 Now, what if you want to update the `name` in the array item where the id is `1`?
 
-```
+```js
 'UPDATE_FOO_ITEM': target('foo', array.updateWhere)
 ```
 
 Your payload should look like...
 
-```
+```js
 { where: {id: 1}, updates: {name: 'Calvin Froedge'} }
 ```
 
 What if the nesting is even more complicated?
 
-```
+```js
 {
   foo: {
     bar: {
@@ -98,13 +98,13 @@ What if the nesting is even more complicated?
 
 Same API...
 
-```
+```js
 'UPDATE_BAZ_OF_BAR': target('foo', 'bar', 'baz', object.update)
 ```
 
 Payload:
 
-```
+```js
 { hoohaw: 'boo' }
 ```
 
