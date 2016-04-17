@@ -37,7 +37,7 @@ dispatch(removeItemWhere({foo: 'bar'}));
 ## Notes
 `handleActions` comes from [https://github.com/acdlite/redux-actions](https://github.com/acdlite/redux-actions). You don't need to use it to use `redux-modifiers`, but it's a nice library.
 
-Expects that actions are dispatched as [Flux Standard Actions](https://github.com/acdlite/flux-standard-action). Essentially, this means every action looks like:
+`redux-modifiers` does expect that actions are dispatched as [Flux Standard Actions](https://github.com/acdlite/flux-standard-action). Essentially, this means every action looks like:
 
 ```
 {
