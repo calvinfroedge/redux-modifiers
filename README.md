@@ -105,7 +105,7 @@ Same API...
 Payload:
 
 ```
-{ updates: { hoohaw: 'boo' } }
+{ hoohaw: 'boo' }
 ```
 
 # API
