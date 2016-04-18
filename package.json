@@ -1,14 +1,14 @@
 {
   "name": "redux-modifiers",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A collection of generic functions for writing redux reducers to operate on various data structures",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
   "scripts": {
     "clean": "rimraf lib dist es",
     "test": "cross-env BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
-    "build:commonjs": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=commonjs ./node_modules/babel-cli/bin/babel-node.js src --out-dir lib",
-    "build:es": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=es ./node_modules/babel-cli/bin/babel-node.js src --out-dir es",
+    "build:commonjs": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=commonjs ./node_modules/babel-cli/bin/babel.js src --out-dir lib",
+    "build:es": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=es ./node_modules/babel-cli/bin/babel.js src --out-dir es",
     "build:umd": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=commonjs NODE_ENV=development ./node_modules/webpack/bin/webpack.js src/index.js dist/redux-modifiers.js",
     "build:umd:min": "./node_modules/cross-env/bin/cross-env.js BABEL_ENV=commonjs NODE_ENV=production ./node_modules/webpack/bin/webpack.js src/index.js dist/redux-modifiers.min.js",
     "build": "npm run build:commonjs && npm run build:es && npm run build:umd && npm run build:umd:min",
