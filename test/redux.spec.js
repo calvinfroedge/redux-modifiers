@@ -1,17 +1,19 @@
 import expect from 'expect'
-import { array, object, target } from '../src'
+import { array, object, target, update } from '../src'
 import { createAction, handleActions } from 'redux-actions'
 import { createStore } from 'redux'
 
 let add = createAction('add');
-let update = createAction('update');
+let updateObject = createAction('update');
+let updateSimple = createAction('update_simple');
 
 const reducer = handleActions({
   'add': array.add
 }, []);
 
 const objectReducer = handleActions({
-  'update': target('foo', object.update)
+  'update': target('foo', object.update),
+  'update_simple': target('foo', 'bar', update)
 }, {foo: { bar: 'baz' } });
 
 describe('Test with actual reducer', ()=>{
@@ -29,7 +31,12 @@ describe('Test with actual reducer', ()=>{
   });
 
   it('Should update the object when using targeting', ()=>{
-    store2.dispatch(update({bar: 'bop'}));
+    store2.dispatch(updateObject({bar: 'bop'}));
     expect(store2.getState().foo.bar).toBe('bop');
+  });
+
+  it('Should update a key with a simple update', ()=>{
+    store2.dispatch(updateSimple('zoo'));
+    expect(store2.getState().foo.bar).toBe('zoo');
   });
 });

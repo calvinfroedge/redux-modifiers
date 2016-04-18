@@ -112,6 +112,12 @@ Payload:
 
 # API
 
+## Scalar / General Methods
+
+### update(state, action)
+
+Payload can take any kind of value. State (or targeted key) will be replaced with that value.
+
 ## Array Methods 
 
 ### add(state, action)
