@@ -128,6 +128,16 @@ Payload can contain any kind of value.
 
 Payload should be an object containing `index` and `item`. `item` is the value which will replace the current value.
 
+Sometimes, you may want to select an object in an array and replace some targeted values. This can be done by combining `updateByIndex` and `target`:
+
+```js
+reducer_fn: (state, action)=>{
+  let { index, selected, value } = action.payload;
+  let item = target(...selected, update)(state[index], {payload: value});
+  return array.updateByIndex(state, {payload: { index, item } });
+}
+```
+
 ### updateWhere(state, action)
 
 Payload should contain `updates` and `where`.
