@@ -2,7 +2,7 @@ function select(obj, args) {
   var res = obj;
   for (var i=0; i<args.length; i++) { 
     res = res[args[i]]; 
-    if(!res) throw new Error(`${args[i]} is not a key!`);
+    if(typeof(res) == 'undefined') throw new Error(`${args[i]} is not a key!`);
   }
   return res;
 }
