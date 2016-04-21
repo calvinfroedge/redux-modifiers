@@ -15,7 +15,7 @@ const reducer = reducer({
   'ADD_ITEM_TO_LIST': push,
   'UPDATE': updateIn,
   'ADD_NESTED_ITEM': (state, action)=>{
-    let { selected, value } = action.payload; //Index of nested item
+    let { selected, value } = action.payload; //Index of nested item (could be deeply nested, i.e. [0, 'key', 1])
     return state.updateIn(selected, item => item.push(value) ); //Using ImmutableJS API
   },
   'REMOVE': removeIn
