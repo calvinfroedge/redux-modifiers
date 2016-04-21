@@ -9,12 +9,14 @@ A collection of generic functions on top of [ImmutableJS](http://facebook.github
 Example reducer:
 
 ```js
+import { reducer, push, updateIn, removeIn } from 'redux-modifiers'
+
 const reducer = reducer({
   'ADD_ITEM_TO_LIST': push,
   'UPDATE': updateIn,
   'ADD_NESTED_ITEM': (state, action)=>{
     let { selected, value } = action.payload; //Index of nested item
-    return state.updateIn(selected, item => item.push(value) );
+    return state.updateIn(selected, item => item.push(value) ); //Using ImmutableJS API
   },
   'REMOVE': removeIn
 }, []);
