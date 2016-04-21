@@ -1,6 +1,6 @@
 {
   "name": "redux-modifiers",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A collection of generic functions for writing redux reducers to operate on various data structures",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
@@ -31,7 +31,10 @@
     "url": "https://github.com/calvinfroedge/redux-modifiers/issues"
   },
   "homepage": "https://github.com/calvinfroedge/redux-modifiers#readme",
-  "dependencies": {},
+  "dependencies": {
+    "immutable": "^3.8.1",
+    "redux-actions": "^0.9.1"
+  },
   "devDependencies": {
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.4",

@@ -1,55 +1,83 @@
 import expect from 'expect'
-import { array, object, target, update } from '../src'
-import { createAction, handleActions } from 'redux-actions'
+import { reducer, push, update, updateIn, remove, removeIn } from '../src'
+import { createAction as action } from 'redux-actions'
 import { createStore } from 'redux'
-
-let add = createAction('add');
-let updateObject = createAction('update');
-let updateSimple = createAction('update_simple');
-let updateEmpty = createAction('update_empty_string');
-let noExist = createAction('no_exist');
-
-const reducer = handleActions({
-  'add': array.add
-}, []);
-
-const objectReducer = handleActions({
-  'update': target('foo', object.update),
-  'update_simple': target('foo', 'bar', update),
-  'update_empty_string': target('bop', update),
-  'no_exist': target('zoo', update)
-}, {foo: { bar: 'baz' }, bop: ''});
+import { List, Map } from 'immutable'
 
 describe('Test with actual reducer', ()=>{
   var store;
-  var store2;
 
-  before(()=>{
-    store = createStore(reducer);
-    store2 = createStore(objectReducer);
+  let getJSON = ()=>{
+    return [
+      {
+        foo: 'bar',
+        nested: [
+          {bar: 'bop'}
+        ]
+      }
+    ]
+  }
+
+  beforeEach(()=>{
+    let testReducer = reducer({
+      'push': push,
+      'update': update,
+      'updateIn': updateIn,
+      'remove': remove,
+      'removeIn': removeIn
+    }, getJSON());
+    store = createStore(testReducer);
   });
 
-  it('Should add item to the reducer', ()=>{
-    store.dispatch(add('foo'));
-    expect(store.getState().length).toBe(1);
+  it('Push should create an immutable list, with an item that is an immutable map', ()=>{
+    store.dispatch(
+      action('push')(
+        {foo: 'bar'}
+      )
+    );
+    let state = store.getState();
+    expect(List.isList(state)).toBe(true);
+    expect(Map.isMap(state.last())).toBe(true);
   });
 
-  it('Should update the object when using targeting', ()=>{
-    store2.dispatch(updateObject({bar: 'bop'}));
-    expect(store2.getState().foo.bar).toBe('bop');
+  it('Should update a nested item with updateIn', ()=>{
+    let path = [0, 'nested', 0, 'bar']
+    store.dispatch(
+      action('updateIn')(
+        {selected: path, value: 'baz'}
+      )
+    );
+    let state = store.getState();
+    expect(state.getIn(path)).toBe('baz');
   });
 
-  it('Should update a key with a simple update', ()=>{
-    store2.dispatch(updateSimple('zoo'));
-    expect(store2.getState().foo.bar).toBe('zoo');
+  it('Should remove a nested item with removeIn', ()=>{
+    let path = [0, 'nested', 0];
+    store.dispatch(
+      action('removeIn')(path)
+    );
+    let state = store.getState();
+    expect(state.getIn(path)).toBe(undefined);
   });
 
-  it('Should succeed in targeting with empty string', ()=>{
-    store2.dispatch(updateEmpty('cool!'));
-    expect(store2.getState().bop).toBe('cool!');
+  it('Should remove an item', ()=>{
+    store.dispatch(
+      action('remove')(0)
+    );
+
+    let state = store.getState();
+    expect(state.size).toBe(0);
   });
 
-  it('Should fail if key does not exist', ()=>{
-    expect(()=>{store2.dispatch(noExist('crap!'))}).toThrow(Error);
+  it('Should update an item with update', ()=>{
+    store.dispatch(
+      action('update')({
+        key: 0,
+        value: 'boo'
+      })
+    );
+
+    let state = store.getState();
+    expect(state.first()).toBe('boo');
   });
 });
