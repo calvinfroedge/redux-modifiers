@@ -39,9 +39,9 @@ You can call `toJS` on any structure you get out of the reducer to convert it ba
 ### State and ImmutableJS
 `state` is converted to an `Immutable` data structure, so you are free to use any `ImmutableJS` function you like on state. If you find you perform a particular option frequently, consider submitting a *pull request* and adding it to `redux-modifiers`!
 
-# Target specific parts of state
+# Targeting specific parts of state
 
-Sometimes, you want to work on only a very specific part of state. Use `updateIn`, to target specific parts of state, passing the update function the path that you want to update. Example state:
+Use `updateIn`, to target specific parts of state, passing the update function the path that you want to update. Example state:
 
 ```js
 {
