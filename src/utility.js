@@ -18,5 +18,5 @@ export function checkUpdate(action){
 }
 
 export function modifier(value, fn){
-  return value ? val => Immutable.fromJS(value) : fn;
+  return !isUndefined(value) ? val => Immutable.fromJS(value) : fn;
 }

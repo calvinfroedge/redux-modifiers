@@ -73,11 +73,11 @@ describe('Test with actual reducer', ()=>{
     store.dispatch(
       action('update')({
         key: 0,
-        value: 'boo'
+        value: false
       })
     );
 
     let state = store.getState();
-    expect(state.first()).toBe('boo');
+    expect(state.first()).toBe(false);
   });
 });

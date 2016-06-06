@@ -1,6 +1,6 @@
 {
   "name": "redux-modifiers",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A collection of generic functions for writing redux reducers to operate on various data structures",
   "main": "lib/index.js",
   "jsnext:main": "es/index.js",
